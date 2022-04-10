@@ -1,0 +1,240 @@
+{
+        "Cksum": {
+                "checksum": 1534,
+                "checksum_ours": 29963,
+                "match": false
+        },
+        "DataPts": {
+                "_datapts_params": {
+                        "offset": "STV",
+                        "xscaling": 1
+                },
+                "max before offset": 65.535,
+                "min before offset": 15.894,
+                "num data points": 235028,
+                "num data points 2": 235028,
+                "num traces": 1,
+                "scaling factor": 1.0
+        },
+        "FxdParams": {
+                "BC": "-79.40 dB",
+                "EOT thr": "5.000 dB",
+                "X1": 0,
+                "X2": 0,
+                "Y1": 0,
+                "Y2": 0,
+                "acquisition offset": 0,
+                "acquisition offset distance": 0,
+                "acquisition range distance": 800000,
+                "averaging time": "9 sec",
+                "date/time": "Mon Jun 17 16:01:21 2019 (1560758481 sec)",
+                "front panel offset": 0,
+                "index": "1.467900",
+                "loss thr": "0.010 dB",
+                "noise floor level": 14000,
+                "noise floor scaling factor": 1000,
+                "num averages": 36720,
+                "num data points": 235028,
+                "number of pulse width entries": 1,
+                "power offset first point": 0,
+                "pulse width": "20000 ns",
+                "range": 240.00143681049119,
+                "refl thr": "-40.000 dB",
+                "resolution": 1.021161039580353,
+                "sample spacing": "0.005 usec",
+                "trace type": "ST[standard trace]",
+                "unit": "mt (meters)",
+                "wavelength": "1550.0 nm"
+        },
+        "GenParams": {
+                "build condition": "BC (as-built)",
+                "cable ID": " ",
+                "cable code/fiber type": " ",
+                "comments": " ",
+                "fiber ID": " ",
+                "fiber type": "G.652 (standard SMF)",
+                "language": "CH",
+                "location A": " ",
+                "location B": " ",
+                "operator": " ",
+                "user offset": "0",
+                "user offset distance": "0",
+                "wavelength": "1550 nm"
+        },
+        "KeyEvents": {
+                "Summary": {
+                        "ORL": 0.0,
+                        "ORL finish": 0.0,
+                        "ORL start": 0.0,
+                        "loss end": 0.111307,
+                        "loss start": 0.0,
+                        "total loss": 23.041
+                },
+                "event 1": {
+                        "comments": " ",
+                        "distance": "0.000",
+                        "end of curr": "8.169",
+                        "end of prev": "0.000",
+                        "peak": "0.000",
+                        "refl loss": "0.000",
+                        "slope": "0.000",
+                        "splice loss": "0.000",
+                        "start of curr": "0.000",
+                        "start of next": "10.038",
+                        "type": "119999LS {auto} reflection"
+                },
+                "event 2": {
+                        "comments": " ",
+                        "distance": "10.038",
+                        "end of curr": "18.207",
+                        "end of prev": "8.169",
+                        "peak": "10.038",
+                        "refl loss": "-31.143",
+                        "slope": "0.183",
+                        "splice loss": "0.277",
+                        "start of curr": "10.038",
+                        "start of next": "18.322",
+                        "type": "1F9999LS {auto} reflection"
+                },
+                "event 3": {
+                        "comments": " ",
+                        "distance": "18.322",
+                        "end of curr": "26.491",
+                        "end of prev": "18.207",
+                        "peak": "18.322",
+                        "refl loss": "-100.000",
+                        "slope": "0.182",
+                        "splice loss": "0.010",
+                        "start of curr": "18.322",
+                        "start of next": "28.411",
+                        "type": "0F9999LS {auto} loss/drop/gain"
+                },
+                "event 4": {
+                        "comments": " ",
+                        "distance": "28.411",
+                        "end of curr": "36.580",
+                        "end of prev": "26.491",
+                        "peak": "28.411",
+                        "refl loss": "-100.000",
+                        "slope": "0.183",
+                        "splice loss": "0.017",
+                        "start of curr": "28.411",
+                        "start of next": "40.115",
+                        "type": "0F9999LS {auto} loss/drop/gain"
+                },
+                "event 5": {
+                        "comments": " ",
+                        "distance": "40.115",
+                        "end of curr": "48.285",
+                        "end of prev": "36.580",
+                        "peak": "40.115",
+                        "refl loss": "-23.928",
+                        "slope": "0.185",
+                        "splice loss": "0.691",
+                        "start of curr": "40.115",
+                        "start of next": "70.877",
+                        "type": "1F9999LS {auto} reflection"
+                },
+                "event 6": {
+                        "comments": " ",
+                        "distance": "70.877",
+                        "end of curr": "79.046",
+                        "end of prev": "48.285",
+                        "peak": "70.877",
+                        "refl loss": "-32.544",
+                        "slope": "0.181",
+                        "splice loss": "1.603",
+                        "start of curr": "70.877",
+                        "start of next": "110.859",
+                        "type": "1F9999LS {auto} reflection"
+                },
+                "event 7": {
+                        "comments": " ",
+                        "distance": "110.859",
+                        "end of curr": "119.029",
+                        "end of prev": "79.046",
+                        "peak": "110.859",
+                        "refl loss": "-29.454",
+                        "slope": "0.187",
+                        "splice loss": "12.039",
+                        "start of curr": "110.859",
+                        "start of next": "120.050",
+                        "type": "0E9999LS {auto} loss/drop/gain"
+                },
+                "num events": 7
+        },
+        "SupParams": {
+                "OTDR": " ",
+                "OTDR S/N": " ",
+                "module": " ",
+                "module S/N": "01010652191005",
+                "other": " ",
+                "software": "2.1.0.10",
+                "supplier": "OPWILL"
+        },
+        "blocks": {
+                "Cksum": {
+                        "name": "Cksum",
+                        "order": 7,
+                        "pos": 472201,
+                        "size": 8,
+                        "version": "2.00"
+                },
+                "DataPts": {
+                        "name": "DataPts",
+                        "order": 5,
+                        "pos": 704,
+                        "size": 470076,
+                        "version": "2.00"
+                },
+                "FxdParams": {
+                        "name": "FxdParams",
+                        "order": 2,
+                        "pos": 223,
+                        "size": 92,
+                        "version": "2.00"
+                },
+                "GenParams": {
+                        "name": "GenParams",
+                        "order": 0,
+                        "pos": 134,
+                        "size": 40,
+                        "version": "2.00"
+                },
+                "KeyEvents": {
+                        "name": "KeyEvents",
+                        "order": 3,
+                        "pos": 315,
+                        "size": 342,
+                        "version": "2.00"
+                },
+                "LinkParams": {
+                        "name": "LinkParams",
+                        "order": 4,
+                        "pos": 657,
+                        "size": 47,
+                        "version": "2.00"
+                },
+                "SupParams": {
+                        "name": "SupParams",
+                        "order": 1,
+                        "pos": 174,
+                        "size": 49,
+                        "version": "2.00"
+                },
+                "UserName": {
+                        "name": "UserName",
+                        "order": 6,
+                        "pos": 470780,
+                        "size": 1421,
+                        "version": "2.00"
+                }
+        },
+        "filename": "6-17.sor",
+        "format": 2,
+        "mapblock": {
+                "nblocks": 8,
+                "nbytes": 134
+        },
+        "version": "2.00"
+}
