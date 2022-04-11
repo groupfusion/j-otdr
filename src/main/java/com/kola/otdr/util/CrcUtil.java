@@ -1,6 +1,9 @@
-package com.kola.otdr.analysis;
+package com.kola.otdr.util;
 
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  *
@@ -194,6 +197,14 @@ public class CrcUtil {
        System.out.println("CRC16:"+CRC16.crc16(hexString.getBytes()));
        System.out.println("crc_16_CCITT_False:"+crc_16_CCITT_False(hexString.getBytes(),2));
         System.out.println(crc_16_CCITT_False(hexString));//1792
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println("date:" +new Date(1321951763) +"  || "+format.format(new Date(1321951763)));
+        System.out.println("date:" +new Date(1560758481) +"  || "+format.format(new Date(1560758481*1000)));
+//        3933334;2e-5；;
+        BigDecimal a = new BigDecimal(3933334);
+        BigDecimal b = new BigDecimal(2e-5);
+        BigDecimal c = a.multiply(b);
+        System.out.println(c.toString());
 
     }
 }

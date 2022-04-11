@@ -18,7 +18,7 @@ public class OTDRAnalysisTest {
     private static double SOL = 0.299792458D;
 
     public static void main(String[] args) throws IOException {
-        read("test.sor");
+        read("6-17.sor");
     }
 
     public static void read(String fileName) throws IOException {
@@ -59,7 +59,7 @@ public class OTDRAnalysisTest {
 
         byte[] mapContent = new byte[mapLength];
         System.arraycopy(content, 0, mapContent, 0, mapLength);
-        System.out.println("Map Block Content : " + Arrays.toString(mapContent));
+//        System.out.println("Map Block Content : " + Arrays.toString(mapContent));
         System.out.println("================= Map =================\n");
 
         offset += LENGTH_SHORT;
@@ -82,7 +82,7 @@ public class OTDRAnalysisTest {
             //设置区块字节内容
             byte[] blockContent = new byte[length];
             System.arraycopy(content, contentOffset, blockContent, 0, length);
-            System.out.println("Block Content : " + Arrays.toString(blockContent));
+            //System.out.println("Block Content : " + Arrays.toString(blockContent));
 
             switch (blockId) {
                 case "GenParams":
@@ -511,7 +511,7 @@ public class OTDRAnalysisTest {
             data[i] = readInt(content, offset, 2);
             offset += 2;
         }
-        System.out.println("    Scale Factor n : " + Arrays.toString(data));
+//        System.out.println("    Scale Factor n : " + Arrays.toString(data));
     }
 
     private static void printChecksum(byte[] content, int offset) {

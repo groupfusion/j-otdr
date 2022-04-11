@@ -10,9 +10,12 @@ package com.kola.otdr.analysis;
 public class Parts {
     public static int LENGTH_SHORT = 2;
     public static int LENGTH_LONG = 4;
+
+    //光速
+    public static double SOL = 0.299792458D;
     /**
      * 读取整型数
-     *
+     * get_uint /get_signed
      * @param b      字节内容
      * @param offset 起始位置偏移量
      * @param length 整型数字节长度 {@link #LENGTH_SHORT,#LENGTH_LONG}
@@ -67,5 +70,27 @@ public class Parts {
         byte[] bytes = new byte[length];
         System.arraycopy(b, offset, bytes, 0, length);
         return new String(bytes);
+    }
+
+    public static String readHex(byte[] b, int offset, int length){
+        byte[] bytes = new byte[length];
+        System.arraycopy(b, offset, bytes, 0, length);
+        String hstr = "";
+//        for(byte :bytes){
+//
+//        }
+
+//        for i in range(nbytes):
+//            b = "%02X " % ord(fh.read(1))
+//            hstr += b
+//        return hstr;
+//
+//        for(var i=0; i<nbytes; i++) {
+//            var b = (await fh.readUInt8()).toString(16);
+//            b = ("00000" + b).substr(-2).toUpperCase()+" ";
+//            hstr += b;
+//        }
+        return "";
+
     }
 }

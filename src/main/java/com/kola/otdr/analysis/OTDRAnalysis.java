@@ -1,23 +1,27 @@
 package com.kola.otdr.analysis;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
-import java.util.logging.Logger;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Title: OTDRAnalysis
  * @date: 2022-03-29 14:02
  */
 public class OTDRAnalysis {
-    private static Logger logger = Logger.getLogger("OTDRAnalysis");
+    private static Logger logger = LoggerFactory.getLogger("OTDRAnalysis");
     private static int LENGTH_SHORT = 2;
     private static int LENGTH_LONG = 4;
 
     public static void main(String[] args) throws IOException {
-        read("sample1310_lowDR.sor");
+        read("6-17.sor");
 //        read("demo_ab.sor");
     }
     /**
@@ -50,8 +54,7 @@ public class OTDRAnalysis {
          read(content,fileName);
     }
 
-    public static Map<String, Object> read(byte[] content,String fileName) {
-//        List<Map<String, Object>> blocks = new ArrayList<>();
+    public static Map<String, Object> read(byte[] content, String fileName) {
         String tracedata[];
 
         int offset = 0;
@@ -60,7 +63,7 @@ public class OTDRAnalysis {
         results.put("filename",fileName);
 
         String mapBlockId = Parts.readStringSpaceZero(content, offset);
-        System.out.println("Map Block ID : " + mapBlockId);
+        logger.info("BlockID : " + mapBlockId);
         int format=2;
         if(mapBlockId.equals("Map")){
             offset += mapBlockId.getBytes().length + 1;
@@ -69,22 +72,17 @@ public class OTDRAnalysis {
             offset = 0;
             format=1;
         }
-        String status = Mapblock.process(results,content,offset);
+
+        String status = Mapblock.process(results,content);
         if(!"ok".equals(status)){
 //            return ;
         }
+        format = Integer.parseInt(results.get("format").toString());
 
-        Map<String, Object> mapblock = (Map)results.get("mapblock");
-        int mapLength = (int)mapblock.get("nbytes");
-        System.out.println(mapLength);
-        //设置区块字节内容
-//        byte[] mapContent = new byte[mapLength];
-//        System.arraycopy(content, 0, mapContent, 0, mapLength);
-//        results.put("content", Arrays.toString(mapContent));
-//        blocks.add(results);
+//        Map<String, Object> mapblock = (Map)results.get("mapblock");
+//        int mapLength = (int)mapblock.get("nbytes");
+//        logger.info("mapblock.nbytes:"+mapLength);
 
-//        offset += LENGTH_SHORT;
-//        int contentOffset = mapLength;
 
         Map<String,Object> blocks=(Map)results.get("blocks");
         for(String bName:blocks.keySet()){
@@ -96,7 +94,8 @@ public class OTDRAnalysis {
             //设置区块字节内容
             byte[] blockContent = new byte[length];
             System.arraycopy(content, startOffset, blockContent, 0, length);
-            System.out.println(bname+"："+Arrays.toString(blockContent));;
+            logger.info("==============="+bname+"===============");
+//            logger.info(bname+" original data："+ Arrays.toString(blockContent));
 
             switch (String.valueOf(bname)) {
                 case "GenParams":
@@ -109,7 +108,7 @@ public class OTDRAnalysis {
                     block =  FxdParams.process(format, blockContent);
                     break;
                 case "KeyEvents":
-    //                    readKeyEvents(block, blockContent);
+                    block =  KeyEvents.process(format, blockContent);
                     break;
                 case "LnkParams":
     //                    readLnkParams(block, blockContent);
@@ -121,7 +120,9 @@ public class OTDRAnalysis {
                     block =  Checksum.process(format, blockContent,content);
                     break;
             }
-            System.out.println(bname+":"+block);
+            logger.info(bname+" analysised data:: "+block);
+            logger.info("==============="+bname+"==end===============");
+
             results.put(bname,block);
 
         }

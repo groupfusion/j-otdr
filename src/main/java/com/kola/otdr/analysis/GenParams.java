@@ -1,5 +1,8 @@
 package com.kola.otdr.analysis;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,23 +10,24 @@ import java.util.Map;
  * GenParams
  */
 public class GenParams {
+    private static Logger logger = LoggerFactory.getLogger("GenParams");
 
     public static Map<String, Object> process(int format, byte[] content){
         String bName="GenParams";
         int offset = 0;
         if (format == 1) {
-            return printGenParams1(content, offset);
+            return readGenParamsV1(content, offset);
         }else{
             String blockId = Parts.readStringSpaceZero(content, offset);
             if(bName.equals(blockId)) {
-                return printGenParams2(content, offset);
+                return readGenParamsV2(content, offset);
             }else{
                 return null;
             }
         }
     }
 
-    private static Map<String, Object> printGenParams1(byte[] content, int offset) {
+    private static Map<String, Object> readGenParamsV1(byte[] content, int offset) {
         Map<String, Object> block = new HashMap<>();
         String [] fields = {
                 "cable ID",  // ........... 0
@@ -38,41 +42,40 @@ public class GenParams {
                 "comments",  // ........... 9
         };
         String language = Parts.readString(content, offset, 2);
-        System.out.println("Language : " + language);
+        logger.info("Language : " + language);
         block.put("language",language);
         offset += 2;
         int count = 0;
         String xstr;
         for(String field :fields){
-
             if (field == "build condition") {
                 xstr = Parts.readString(content, offset, 2);
                 offset += 2;
-                System.out.println(field+ " : " + xstr);
+                logger.info(field+ " : " + xstr);
                 block.put(field,xstr);
             }else if(field.equals("wavelength")){
                 int xint = Parts.readInt(content, offset, 2);
                 offset += 2;
-                System.out.println(field+" : " + xint);
+                logger.info(field+" : " + xint);
                 block.put(field,xint);
             }else if( field.equals("user offset")){
                 int xint = Parts.readInt(content, offset, 4);
                 offset += 4;
-                System.out.println(field+" : " + xint);
+                logger.info(field+" : " + xint);
                 block.put(field,xint);
             }else{
                 xstr = Parts.readStringSpaceZero(content, offset);
                 offset += xstr.getBytes().length+1;
-                System.out.println(field+" : " + xstr);
+                logger.info(field+" : " + xstr);
                 block.put(field,xstr);
             }
             count += 1;
         }
-        System.out.println("count::"+count);
+//        System.out.println("count::"+count);
         return block;
     }
 
-    private static Map<String, Object> printGenParams2(byte[] content, int offset) {
+    private static Map<String, Object> readGenParamsV2(byte[] content, int offset) {
         Map<String, Object> block = new HashMap<>();
         String [] fields = {
                 "cable ID",  // ........... 0
@@ -91,7 +94,7 @@ public class GenParams {
         String name = Parts.readStringSpaceZero(content, offset);
         offset += name.getBytes().length + 1;
         String language = Parts.readString(content, offset, 2);
-        System.out.println("Language : " + language);
+        logger.info("Language : " + language);
         block.put("language",language);
         offset += 2;
         int count = 0;
@@ -101,32 +104,32 @@ public class GenParams {
             if (field == "build condition") {
                 xstr = Parts.readString(content, offset, 2);
                 offset += 2;
-                System.out.println(field+ " : " + xstr);
+                logger.info(field+ " : " + xstr);
                 block.put(field,xstr);
             }else if(field.equals("fiber type")) {
                 int xint = Parts.readInt(content, offset, 2);
                 offset += 2;
-                System.out.println(field+" : " + xint);
+                logger.info(field+" : " + xint);
                 block.put(field,xint);
             }else if(field.equals("wavelength")){
                 int xint = Parts.readInt(content, offset, 2);
                 offset += 2;
-                System.out.println(field+" : " + xint);
+                logger.info(field+" : " + xint);
                 block.put(field,xint);
             }else if( field.equals("user offset") || field.equals("user offset distance")){
                 int xint = Parts.readInt(content, offset, 4);
                 offset += 4;
-                System.out.println(field+" : " + xint);
+                logger.info(field+" : " + xint);
                 block.put(field,xint);
             }else{
                 xstr = Parts.readStringSpaceZero(content, offset);
                 offset += xstr.getBytes().length+1;
-                System.out.println(field+" : " + xstr);
+                logger.info(field+" : " + xstr);
                 block.put(field,xstr);
             }
             count += 1;
         }
-        System.out.println("count::"+count);
+//        System.out.println("count::"+count);
         return block;
     }
 }
