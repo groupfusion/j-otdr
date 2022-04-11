@@ -14,6 +14,6 @@ OTDR 标准格式文件是遵守Bellcore 标准的
 一般来讲，所有的解析文件都是显示这些信息
 [原文链接](https://blog.csdn.net/qq_28207461/article/details/102466618)
 
-
+[OTDR文件格式说明](https://github-wiki-see.page/m/sid5432/pubOTDR/wiki/The-OTDR-%28Optical-Time-Domain-Reflectometer%29-Data-Format)
 [jsOTDR](https://github.com/sid5432/jsOTDR)
 [pyOTDR](https://github.com/sid5432/pyOTDR)

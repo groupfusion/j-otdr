@@ -96,7 +96,7 @@ public class OTDRAnalysis {
             System.arraycopy(content, startOffset, blockContent, 0, length);
             logger.info("==============="+bname+"===============");
 //            logger.info(bname+" original data："+ Arrays.toString(blockContent));
-
+//        Float factor = 1e-4 * Parts.SOL / Float.parseFloat("refraction");//refraction 折射率
             switch (String.valueOf(bname)) {
                 case "GenParams":
                     block = GenParams.process(format, blockContent);
