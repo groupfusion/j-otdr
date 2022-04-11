@@ -81,17 +81,27 @@ public class KeyEvents {
             }
 
             if (format == 2) {
-                var end_prev   = Parts.readInt(content, offset, 4) ;// * factor // 22-25: end of previous event
+                var end_prev   = Parts.readInt(content, offset, 4) ;// * factor // 22-25: end of previous
+                offset+=4;
                 var start_curr = Parts.readInt(content, offset, 4) ;// * factor // 26-29: start of current event
+                offset+=4;
                 var end_curr   = Parts.readInt(content, offset, 4) ;// * factor // 30-33: end of current event
+                offset+=4;
                 var start_next = Parts.readInt(content, offset, 4) ;// * factor // 34-37: start of next event
+                offset+=4;
                 var pkpos      = Parts.readInt(content, offset, 4) ;// * factor // 38-41: peak point of event
+                offset+=4;
 
                 event.put("end of prev", end_prev);
                 event.put("start of curr", start_curr);
                 event.put("end of curr", end_curr);
                 event.put("start of next", start_next);
                 event.put("peak", pkpos);
+                logger.info("        end of prev :{}", end_prev);
+                logger.info("        start of curr :{}", start_curr);
+                logger.info("        end of curr :{}", end_curr);
+                logger.info("        start of next :{}", start_next);
+                logger.info("        peak :{}", pkpos);
             }
 
             int[] markerLocations = new int[5];
@@ -104,11 +114,13 @@ public class KeyEvents {
 
             offset += comments.getBytes().length + 1;
 
+            logger.info("        EventNum : " +xid);
             logger.info("        Type : " + xtype);
             logger.info("        distance : " + dist);
             logger.info("        slope : " + slope);
             logger.info("        splice loss : " + splice);
             logger.info("        refl loss: " + refl);
+
             logger.info("        Comment : " + comments);
             event.put("type", xtype);
             event.put("distance", dist);
