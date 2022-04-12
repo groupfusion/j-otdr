@@ -11,15 +11,15 @@ import java.util.Map;
  * @date: 2022-04-12 12:15
  */
 public class OtdrData {
-    private Map<String,Object> params;
+    private Map<String,Object> dump;
     private List<String> tracedata;
 
-    public Map<String, Object> getParams() {
-        return params;
+    public Map<String, Object> getDump() {
+        return dump;
     }
 
-    public void setParams(Map<String, Object> params) {
-        this.params = params;
+    public void setDump(Map<String, Object> dump) {
+        this.dump = dump;
     }
 
     public List<String> getTracedata() {

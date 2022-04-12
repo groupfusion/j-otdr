@@ -5,9 +5,7 @@ import com.kola.otdr.util.JsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -19,8 +17,13 @@ public class OTDRAnalysis {
 
     public static void main(String[] args) throws Exception {
         OTDRAnalysis analysis = new OTDRAnalysis();
-        OtdrData otdrData = analysis.read("demo_ab.sor");
-//        read("demo_ab.sor");
+        String sorFileName="demo_ab";
+        OtdrData otdrData = analysis.read(sorFileName+".sor");
+
+        logger.info("tracedata:"+otdrData.getTracedata());
+        logger.info(sorFileName +":" + JsonUtils.toJson(otdrData.getDump()));
+        analysis.writeFileJson(sorFileName,otdrData.getDump());
+        analysis.writeFileData(sorFileName,otdrData.getTracedata());
     }
     /**
      * 读取OTDR文件内容
@@ -32,13 +35,34 @@ public class OTDRAnalysis {
        return read(new FileInputStream(fileName),fileName);
     }
 
+    public void writeFileJson(String fileName,Map<String,Object> dump){
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter(fileName+"_dump.json"));
+            out.write(JsonUtils.toJson(dump));
+            out.close();
+            System.out.println("json文件创建成功！");
+        } catch (IOException e) {
+        }
+    }
+    public void writeFileData(String fileName,List<String> tracedata){
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter(fileName+"_trace.data"));
+            for(String hang:tracedata) {
+                out.write(hang +"\n");
+            }
+            out.close();
+            System.out.println("data文件创建成功！");
+        } catch (IOException e) {
+        }
+    }
+
     /**
      * 读取OTDR输入流内容
      *
      * @param input 文件输入流
      * @return 区块集合信息
      */
-    public  OtdrData read(InputStream input,String fileName) throws Exception {
+    private  OtdrData read(InputStream input,String fileName) throws Exception {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         int len;
@@ -51,13 +75,10 @@ public class OTDRAnalysis {
         //获取字节内容
         OtdrData results = read(content,fileName);
 
-
-        logger.info("tracedata:"+results.getTracedata());
-        logger.info(fileName +":" + JsonUtils.toJson(results.getParams()));
         return results;
     }
 
-    public OtdrData read(byte[] content, String fileName) throws Exception {
+    private OtdrData read(byte[] content, String fileName) throws Exception {
         OtdrData data = new OtdrData();
         List<String> tracedata=new ArrayList();
 
@@ -119,12 +140,12 @@ public class OTDRAnalysis {
             }
             logger.info(bname+" analysised data:: "+block);
             logger.info("==============="+bname+"==end===============");
-            if(block!=null) {
+            if(!block.isEmpty()) {
                 results.put(bname, block);
             }
 
         }
-        data.setParams(results);
+        data.setDump(results);
         data.setTracedata(tracedata);
         return data;
     }

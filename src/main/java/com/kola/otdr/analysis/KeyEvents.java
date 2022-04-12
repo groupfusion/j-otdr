@@ -3,8 +3,8 @@ package com.kola.otdr.analysis;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,7 +45,7 @@ public class KeyEvents {
 //        Float factor = 1e-4 * Parts.SOL / Float.parseFloat("refraction");//refraction 折射率
         Pattern pat = Pattern.compile("(.)(.)9999LS");
         for (int i = 0; i < eventCount; i++) {
-            Map<String, Object> event = new HashMap<>();
+            Map<String, Object> event = new LinkedHashMap<>();
             int xid= Parts.readInt(content, offset, 2);                 // 00-01: event number
             offset += 2;
             Double dist = Parts.readInt(content, offset, 4) * Parts.factor(); // * factor  // 02-05: time-of-travel; need to convert to distance
@@ -144,10 +144,10 @@ public class KeyEvents {
         Map<String, Object> summary = new HashMap<>();
         summary.put("total loss",String.format("%.3f",total));
         summary.put("ORL"       ,String.format("%.3f",orl));
-        summary.put("loss start",String.format("%.3f",loss_start));
-        summary.put("loss end"  ,String.format("%.3f",loss_finish));
-        summary.put("ORL start" ,String.format("%.3f",orl_start));
-        summary.put("ORL finish",String.format("%.3f",orl_finish));
+        summary.put("loss start",String.format("%.6f",loss_start));
+        summary.put("loss end"  ,String.format("%.6f",loss_finish));
+        summary.put("ORL start" ,String.format("%.6f",orl_start));
+        summary.put("ORL finish",String.format("%.6f",orl_finish));
         block.put("Summary",summary);
         logger.info("event block: {}",block);
         return block;
