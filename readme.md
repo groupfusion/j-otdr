@@ -1,19 +1,34 @@
-javaOTDR 
+jOTDR：Simple OTDR SOR file parse written in Java 
 
-OTDR 测量文件 SOR文件解析
-OTDR 标准格式文件是遵守Bellcore 标准的
-
-概要【文件名称、测量时间、光缆标识、纤芯标识、起点、终点、设备型号、设备序列号等】
-测量结果【长度、总损耗、平均损耗、平均接头损耗、最大接头损耗、跨段光回损等】
-测量参数【测量范围、波长、脉宽、持续时间、是否高分辨率、折射率、分辨率、背向散射、余长系数等】
-阈值设定【单项接头损耗、单项连接器损耗、反射率、光纤区段衰减、跨段长度、光回损等】
-测量事件【事件位置、跨段损耗、反射率、事件类型、事件状态（回波、分离）事件起点索引、事件终点索引】
-区段统计【累计损耗、衰减系数、区段长度、起点索引、终点索引、起点位置、终点位置】
-测量点信息【double类型、UINT类型】
-
-一般来讲，所有的解析文件都是显示这些信息
-[原文链接](https://blog.csdn.net/qq_28207461/article/details/102466618)
-
+OTDR java版本实现主要参考
 [OTDR文件格式说明](https://github-wiki-see.page/m/sid5432/pubOTDR/wiki/The-OTDR-%28Optical-Time-Domain-Reflectometer%29-Data-Format)
 [jsOTDR](https://github.com/sid5432/jsOTDR)
 [pyOTDR](https://github.com/sid5432/pyOTDR)
+
+这里引用[sid5432 Hsin-Yu Sidney Li](https://github.com/sid5432/)说明
+```text
+The SOR ("Standard OTDR Record") data format is used to store OTDR (optical time-domain reflectometer ) fiber data. The format is defined by the Telcordia SR-4731, issue 2 standard. While it is a standard, it is unfortunately not open, in that the specifics of the data format are not openly available. You can buy the standards document from Telcordia for $750 US (as of this writing), but this was beyond my budget. (And likely comes with all sorts of licensing restrictions. I wouldn't know; I have never seen the document!)
+
+There are several freely available OTDR trace readers available for download on the web, but most do not allow exporting the trace curve into, say, a CSV file for further analysis, and only one that I've found that runs natively on Linux (but without source code; although some of these do work in the Wine emulator). There have been requests on various Internet forums asking for information on how to extract the trace data, but I am not aware of anyone providing any answers beyond pointing to the free readers and the Telcordia standard.
+
+Fortunately the data format is not particularly hard to decipher. The table of contents on the Telcordia SR-4731, issue 2 page provides several clues, as does the Wikipedia page on optical time-domain reflectometer.
+
+Using a binary-file editor/viewer and comparing the outputs from some free OTDR SOR file readers, I was able to piece together most of the encoding in the SOR data format and written a simple program (in Python) that parses the SOR file and dumps the trace data into a file. (For a more detailed description, other than reading the source code, see my blog post).
+
+Presented here for your entertainment are my findings, in the hope that it will be useful to other people. But be aware that the information provided here is based on guess work from looking at a limited number of sample files. I can not guarantee that there are no mistakes, or that I have uncovered all possible exceptions to the rules that I have deduced from the sample files. use it at your own risk! You have been warned!
+
+```
+Java版本实现从sid5432的pyOTDR和jsOTDR移植而来，并参考了[developer-yong/OTDRAnalysis](https://github.com/developer-yong/OTDRAnalysis)的OTDR文件解析
+
+Java版本的OTDR SOR文件解析提供了以下方法：
+
+```java
+OTDRAnalysis analysis = new OTDRAnalysis();
+String sorFileName="demo_ab.sor";
+String fileName=sorFileName.split(".")[0];
+OtdrData otdrData = analysis.read(sorFileName);//读取并解析OTDR sor文件
+analysis.writeFileJson(fileName,otdrData.getDump());//将sor文件的摘要信息写入json文件
+analysis.writeFileData(fileName,otdrData.getTracedata());//将sor文件的数据写入data文件
+```
+
+

@@ -17,16 +17,16 @@ public class OTDRAnalysis {
 
     public static void main(String[] args) throws Exception {
         OTDRAnalysis analysis = new OTDRAnalysis();
-        String sorFileName="demo_ab";
-        OtdrData otdrData = analysis.read(sorFileName+".sor");
-
+        String sorFileName="demo_ab.sor";
+        String fileName=sorFileName.split(".")[0];
+        OtdrData otdrData = analysis.read(sorFileName);
         logger.info("tracedata:"+otdrData.getTracedata());
         logger.info(sorFileName +":" + JsonUtils.toJson(otdrData.getDump()));
-        analysis.writeFileJson(sorFileName,otdrData.getDump());
-        analysis.writeFileData(sorFileName,otdrData.getTracedata());
+        analysis.writeFileJson(fileName,otdrData.getDump());
+        analysis.writeFileData(fileName,otdrData.getTracedata());
     }
     /**
-     * 读取OTDR文件内容
+     * 读取并解析OTDR sor文件内容
      *
      * @param fileName 文件名
      * @return 区块集合信息
@@ -35,6 +35,11 @@ public class OTDRAnalysis {
        return read(new FileInputStream(fileName),fileName);
     }
 
+    /**
+     * 将sor文件的摘要信息写入json文件
+     * @param fileName
+     * @param dump
+     */
     public void writeFileJson(String fileName,Map<String,Object> dump){
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter(fileName+"_dump.json"));
@@ -44,6 +49,12 @@ public class OTDRAnalysis {
         } catch (IOException e) {
         }
     }
+
+    /**
+     * 将sor文件的数据写入data文件
+     * @param fileName
+     * @param tracedata
+     */
     public void writeFileData(String fileName,List<String> tracedata){
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter(fileName+"_trace.data"));
