@@ -13,6 +13,14 @@ public class Parts {
 
     //光速
     public static double SOL = 0.299792458D;
+
+    public static double refraction=1.00029;//默认值，防止计算错误
+
+    public static double factor(){
+        double factor = 1e-4 * Parts.SOL / refraction;
+        return factor;
+    }
+
     /**
      * 读取整型数
      * get_uint /get_signed

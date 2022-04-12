@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -15,6 +16,7 @@ import java.util.Map;
  */
 public class Mapblock {
     private static Logger logger = LoggerFactory.getLogger("Mapblock");
+
     public static String process(Map<String, Object> results, byte[] content){
         String status = "ok";
         int offset = 0;
@@ -48,7 +50,7 @@ public class Mapblock {
         results.put("mapblock",mapBlock);
         int startpos=mapLength;
         offset += Parts.LENGTH_SHORT;
-        Map<String,Object> blocks = new HashMap<>();
+        Map<String,Object> blocks = new LinkedHashMap<>();
         for(int i=0;i<nblocks;i++){
             String bname= Parts.readStringSpaceZero(content,offset);
             offset += bname.getBytes().length + 1;

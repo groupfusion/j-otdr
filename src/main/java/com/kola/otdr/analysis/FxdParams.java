@@ -185,10 +185,8 @@ public class FxdParams {
         var dx  = Float.parseFloat( ss ) * Parts.SOL / ior;
         block.put("range",dx * Integer.parseInt(block.get("num data points").toString()));
         block.put("resolution", dx * 1000.0); // in meters
-
-
-
-
+//      设置光折射率
+        Parts.refraction=Double.parseDouble(block.get("index").toString());
         return block;
     }
 
