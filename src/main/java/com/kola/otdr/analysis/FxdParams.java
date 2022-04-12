@@ -9,6 +9,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 解析fxd 参数信息
+ * @author fusionGroup
+ * @Date 2022-04-11 16:47
+ */
 public class FxdParams {
     private static Logger logger= LoggerFactory.getLogger("FxdParams");
 

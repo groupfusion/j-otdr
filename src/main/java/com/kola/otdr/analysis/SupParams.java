@@ -6,6 +6,10 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author fusionGroup
+ * @date 2022-04-11 15:28
+ */
 public class SupParams {
     private static Logger logger= LoggerFactory.getLogger("SupParams");
     public static Map<String, Object> process(int format, byte[] content){

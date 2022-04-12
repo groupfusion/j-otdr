@@ -8,6 +8,7 @@ import java.util.Map;
 
 /**
  * GenParams
+ * @author fusionGroup
  */
 public class GenParams {
     private static Logger logger = LoggerFactory.getLogger("GenParams");

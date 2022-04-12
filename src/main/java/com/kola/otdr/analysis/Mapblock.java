@@ -9,9 +9,8 @@ import java.util.Map;
 
 /**
  * @Title: Mapblock.java
- * @Description:
- * @Package: com.kola.otdr.analysis
- * @author: xingyun－zhanghuijun
+ * @Description: block块
+ * @author: fusionGroup
  * @date: 2022-03-30 16:15
  */
 public class Mapblock {

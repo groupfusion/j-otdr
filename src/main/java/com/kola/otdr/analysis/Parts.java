@@ -2,9 +2,8 @@ package com.kola.otdr.analysis;
 
 /**
  * @Title: Parts.java
- * @Description:
- * @Package: com.kola.otdr.analysis
- * @author: xingyun－zhanghuijun
+ * @Description: 工具类
+ * @author: fusionGroup
  * @date: 2022-03-30 15:28
  */
 public class Parts {

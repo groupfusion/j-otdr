@@ -8,9 +8,8 @@ import java.util.*;
 
 /**
  * @Title: DataPts.java
- * @Description:
- * @Package: com.kola.otdr.analysis
- * @author: xingyun－zhanghuijun
+ * @Description: 解析测试数据
+ * @author fusionGroup
  * @date: 2022-04-12 10:55
  */
 public class DataPts {

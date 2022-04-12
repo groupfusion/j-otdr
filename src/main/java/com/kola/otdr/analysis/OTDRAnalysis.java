@@ -10,6 +10,8 @@ import java.util.*;
 
 /**
  * @Title: OTDRAnalysis
+ * OTDR sor file prase
+ * @author fusionGroup
  * @date: 2022-03-29 14:02
  */
 public class OTDRAnalysis {

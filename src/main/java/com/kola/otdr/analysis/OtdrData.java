@@ -6,8 +6,7 @@ import java.util.Map;
 /**
  * @Title: OtdrData.java
  * @Description:
- * @Package: com.kola.otdr.analysis
- * @author: xingyun－zhanghuijun
+ * @author fusionGroup
  * @date: 2022-04-12 12:15
  */
 public class OtdrData {
