@@ -1,4 +1,4 @@
-package com.kola.otdr.analysis;
+package com.kola.otdr.util;
 
 /**
  * crc16-ccitt-false加密工具

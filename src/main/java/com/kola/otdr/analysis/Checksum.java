@@ -1,5 +1,7 @@
 package com.kola.otdr.analysis;
 
+import com.kola.otdr.util.CRC16;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,8 +14,7 @@ public class Checksum {
             if(!bName.equals(blockId)) {
                 return null;
             }else{
-                String name = Parts.readStringSpaceZero(blockContent, offset);
-                offset += name.getBytes().length + 1;
+                offset += blockId.getBytes().length + 1;
             }
         }
         Map<String, Object> block = new HashMap<>();
@@ -34,8 +35,8 @@ public class Checksum {
         int size = content.length;
         byte[] buffer = new byte[size-2];
         System.arraycopy(content, 0, buffer, 0, size-2);
-        System.out.println(CRC16Util.calcCrc16(buffer));//crc校验码不正确
-        System.out.println(CRC16Util.crc16ccitt(buffer));//crc校验码不正确
+//        System.out.println(CRC16Util.calcCrc16(buffer));//crc校验码不正确
+//        System.out.println(CRC16Util.crc16ccitt(buffer));//crc校验码不正确
         int digest = CRC16.crc16(buffer); //    //crc16-ccitt-false
         return digest;
     }

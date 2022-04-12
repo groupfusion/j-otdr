@@ -1,8 +1,11 @@
 package com.kola.otdr.analysis;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * @Title: Mapblock.java
@@ -12,13 +15,15 @@ import java.util.logging.Logger;
  * @date: 2022-03-30 16:15
  */
 public class Mapblock {
-    private static Logger logger = Logger.getLogger("Mapblock");
-    public static String process(Map<String, Object> results, byte[] content,int offset){
+    private static Logger logger = LoggerFactory.getLogger("Mapblock");
+
+    public static String process(Map<String, Object> results, byte[] content){
         String status = "ok";
-        offset = 0;
+        int offset = 0;
         //读取并设置Map区块名称
         String mapBlockId = Parts.readStringSpaceZero(content, offset);
         results.put("blockId", mapBlockId);
+        logger.info("===============Mapblock===============");
         logger.info("blockId : " + results.get("blockId"));
         if(mapBlockId.equals("Map")){
             offset += mapBlockId.getBytes().length + 1;
@@ -45,7 +50,7 @@ public class Mapblock {
         results.put("mapblock",mapBlock);
         int startpos=mapLength;
         offset += Parts.LENGTH_SHORT;
-        Map<String,Object> blocks = new HashMap<>();
+        Map<String,Object> blocks = new LinkedHashMap<>();
         for(int i=0;i<nblocks;i++){
             String bname= Parts.readStringSpaceZero(content,offset);
             offset += bname.getBytes().length + 1;
@@ -63,6 +68,7 @@ public class Mapblock {
             blocks.put(bname,ref);
         }
         results.put("blocks",blocks);
+        logger.info("===============Mapblock==end==========");
         return status;
     }
 }

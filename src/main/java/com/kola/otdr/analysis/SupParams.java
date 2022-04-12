@@ -1,9 +1,13 @@
 package com.kola.otdr.analysis;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class SupParams {
+    private static Logger logger= LoggerFactory.getLogger("SupParams");
     public static Map<String, Object> process(int format, byte[] content){
         String bName="SupParams";
         int offset = 0;
@@ -28,11 +32,10 @@ public class SupParams {
                 "other",  // ................ 6
         };
 
-        int count = 0;
         for(String field :fields){
             String xstr = Parts.readStringSpaceZero(content, offset);
             offset += xstr.getBytes().length+1;
-            System.out.println(field+" : " + xstr);
+            logger.info(field+" : " + xstr);
             block.put(field,xstr);
         }
         return block;

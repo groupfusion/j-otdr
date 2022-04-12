@@ -1,4 +1,4 @@
-package com.kola.otdr.analysis;
+package com.kola.otdr.util;
 
 public class CRC16Util {
     private
