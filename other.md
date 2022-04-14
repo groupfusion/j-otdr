@@ -11,3 +11,35 @@ OTDR 标准格式文件是遵守Bellcore 标准的
 
 一般来讲，所有的解析文件都是显示这些信息
 [原文链接](https://blog.csdn.net/qq_28207461/article/details/102466618)
+
+
+## OTDR Sor File Data format
+
+### Block Details
+
+#### Map block
+
+|序号|名称|编码|描述|默认值|类型|长度(字节)|
+|---|:---:|:---:|:---:|:---:|:-----|:-----|
+|1|blockId|-|MapBlockId|map|string||
+
+1、blockId 默认为"map" ；从v2.0开始有此部分，v1.0版本从version开始。
+2、version 版本信息；长度2个字节
+3、blockSize MapBlock块字节长度； 4个字节
+4、blockNum  MapBlock块数量；2个字节
+5、blocks
+5.1 blockName block块名称
+5.2 blockVer  block块版本
+5.3 blockSize block块字节长度，据此在结合MapBlock块字节长度计算块的起始位置；
+
+
+
+
+| 标题|内容|备注|
+| ------ | :------:|------:|
+|标题1 |内容1|备注1|
+| 标题2 | 内容2|备注2|
+
+    
+
+#### 
