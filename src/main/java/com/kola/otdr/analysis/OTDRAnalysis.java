@@ -18,7 +18,7 @@ public class OTDRAnalysis {
     public static void main(String[] args) throws Exception {
         OTDRAnalysis analysis = new OTDRAnalysis();
         String sorFileName="demo_ab.sor";
-        String fileName=sorFileName.split(".")[0];
+        String fileName=sorFileName.split("\\.")[0];
         OtdrData otdrData = analysis.read(sorFileName);
         logger.info("tracedata:"+otdrData.getTracedata());
         logger.info(sorFileName +":" + JsonUtils.toJson(otdrData.getDump()));

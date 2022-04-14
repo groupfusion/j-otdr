@@ -39,16 +39,16 @@ public class Mapblock {
         Map<String,Object> mapBlock = new HashMap<>();
         offset += Parts.LENGTH_SHORT;
         //读取并设置Map区块长度
-        int mapLength = Parts.readInt(content, offset, Parts.LENGTH_LONG);
-        mapBlock.put("nbytes", mapLength);
-        logger.info("nbytes : " + mapBlock.get("nbytes"));
+        int nbytes = Parts.readInt(content, offset, Parts.LENGTH_LONG);
+        mapBlock.put("nbytes", nbytes);
+        logger.info("nbytes : " + nbytes);
         offset += Parts.LENGTH_LONG;
         //读取并设置区块数
         int nblocks = Parts.readInt(content, offset, Parts.LENGTH_SHORT)-1;
         mapBlock.put("nblocks", nblocks);
-        logger.info("nblocks : " + mapBlock.get("nblocks"));
+        logger.info("nblocks : " + nblocks);
         results.put("mapblock",mapBlock);
-        int startpos=mapLength;
+        int startpos=nbytes;
         offset += Parts.LENGTH_SHORT;
         Map<String,Object> blocks = new LinkedHashMap<>();
         for(int i=0;i<nblocks;i++){
