@@ -105,13 +105,15 @@ public class GenParams {
             if (field == "build condition") {
                 xstr = Parts.readString(content, offset, 2);
                 offset += 2;
+                xstr = buildCondition(xstr);
                 logger.info(field+ " : " + xstr);
                 block.put(field,xstr);
             }else if(field.equals("fiber type")) {
                 int xint = Parts.readInt(content, offset, 2);
                 offset += 2;
-                logger.info(field+" : " + xint);
-                block.put(field,xint);
+                xstr = fiberType(xint);
+                logger.info(field+" : " + xstr);
+                block.put(field,xstr);
             }else if(field.equals("wavelength")){
                 int xint = Parts.readInt(content, offset, 2);
                 offset += 2;
@@ -133,4 +135,31 @@ public class GenParams {
 //        System.out.println("count::"+count);
         return block;
     }
+    private static String buildCondition(String key){
+        String value="";
+        switch (key){
+            case "BC": value = key+" (as-built)"; break;
+            case "CC": value = key+" (as-current)";break;
+            case "RC": value = key+" (as-repaired)";break;
+            case "OT": value = key+" (other)";break;
+            default  : value = key+" (unknown)";break;
+        }
+        return value;
+    }
+    private static String fiberType(int key){
+        String value="";
+        switch (key){
+            case 651 : value = "G."+key+" (多模光纤)";break;
+            case 652 : value = "G."+key+" (单模光纤)";break;
+            case 653 : value = "G."+key+" (色散位移光纤DSF)";break;
+            case 654 : value = "G."+key+" (截止波长位移光纤)";break;
+            case 655 : value = "G."+key+" (非零色散位移光纤NZDSF)";break;
+            case 656 : value = "G."+key+" (低斜率非零色散位移光纤)";break;
+            case 657 : value = "G."+key+" (弯曲损耗不明显单模光纤)";break;
+            default  :  value = "G."+key+" (unknown)";break;
+        }
+        return value;
+    }
+
+
 }
