@@ -39,7 +39,7 @@ public class SupParams {
         for(String field :fields){
             String xstr = Parts.readStringSpaceZero(content, offset);
             offset += xstr.getBytes().length+1;
-            logger.info(field+" : " + xstr);
+            logger.debug(field+" : " + xstr);
             block.put(field,xstr);
         }
         return block;

@@ -119,7 +119,6 @@ public class FxdParams {
 
     private static Map<String, Object> processFxdParam(Object[][] plist,byte[] content, int offset) {
         Map<String, Object> block = new HashMap<>();
-        var count = 0;
         for(Object[] field : plist) {
 
             String name  = (String)field[0];
@@ -158,7 +157,7 @@ public class FxdParams {
             if ("date/time".equals(name)) {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 xstr =  format.format(new Date(val.longValue()*1000));
-                logger.info("date/time:: "+xstr +"("+val.longValue()+")");
+                logger.debug("date/time:: "+xstr +"("+val.longValue()+")");
                 // console.log("............... got "+xstr);2019-06-17 16:01:21
             }else if ("unit".equals(name)) {
                 xstr = xstr + unitMap.get(xstr);
@@ -181,7 +180,6 @@ public class FxdParams {
                 block.put(name, xstr+" "+unit);
             }
             offset +=fsize;
-            count += 1;
         }
 
         // corrrections/adjustment:

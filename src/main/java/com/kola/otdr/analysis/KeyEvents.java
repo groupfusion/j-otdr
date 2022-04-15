@@ -37,7 +37,7 @@ public class KeyEvents {
         Map<String, Object> block = new HashMap<>();
         //number of events
         int eventCount = Parts.readInt(content,offset, 2);
-        logger.info(" {} events，content：{}", eventCount,content);
+        logger.debug(" {} events，content：{}", eventCount,content);
         block.put("num events", eventCount);
         offset += 2;
 
@@ -79,12 +79,12 @@ public class KeyEvents {
                 xtype += " [unknown type "+xtype+"]";
             }
 
-            logger.info("        event num : " +xid);
-            logger.info("        Type : " + xtype);
-            logger.info("        distance : " + String.format("%.3f",dist));
-            logger.info("        slope : " + String.format("%.3f",slope));
-            logger.info("        splice loss : " + String.format("%.3f",splice));
-            logger.info("        refl loss: " + String.format("%.3f",refl));
+            logger.debug("  event num : " +xid);
+            logger.debug("        Type : " + xtype);
+            logger.debug("        distance : " + String.format("%.3f",dist));
+            logger.debug("        slope : " + String.format("%.3f",slope));
+            logger.debug("        splice loss : " + String.format("%.3f",splice));
+            logger.debug("        refl loss: " + String.format("%.3f",refl));
 
             if (format == 2) {
                 var end_prev   = Parts.readInt(content, offset, 4) * Parts.factor();// * factor // 22-25: end of previous
@@ -102,11 +102,11 @@ public class KeyEvents {
                 event.put("end of curr", String.format("%.3f",end_curr));
                 event.put("start of next", String.format("%.3f",start_next));
                 event.put("peak", String.format("%.3f",pkpos));
-                logger.info("        end of prev :{}", String.format("%.3f",end_prev));
-                logger.info("        start of curr :{}", String.format("%.3f",start_curr));
-                logger.info("        end of curr :{}", String.format("%.3f",end_curr));
-                logger.info("        start of next :{}", String.format("%.3f",start_next));
-                logger.info("        peak :{}", String.format("%.3f",pkpos));
+                logger.debug("        end of prev :{}", String.format("%.3f",end_prev));
+                logger.debug("        start of curr :{}", String.format("%.3f",start_curr));
+                logger.debug("        end of curr :{}", String.format("%.3f",end_curr));
+                logger.debug("        start of next :{}", String.format("%.3f",start_next));
+                logger.debug("        peak :{}", String.format("%.3f",pkpos));
             }
 //            int[] markerLocations = new int[5];
 //            for (int j = 0; j < markerLocations.length; j++) {
@@ -117,7 +117,7 @@ public class KeyEvents {
 
             String comments = Parts.readStringSpaceZero(content, offset);
             offset += comments.getBytes().length + 1;
-            logger.info("        Comment : " + comments);
+            logger.debug("        Comment : " + comments);
 
             event.put("type", xtype);
             event.put("distance", String.format("%.3f",dist));
@@ -148,7 +148,7 @@ public class KeyEvents {
         summary.put("ORL start" ,String.format("%.6f",orl_start));
         summary.put("ORL finish",String.format("%.6f",orl_finish));
         block.put("Summary",summary);
-        logger.info("event block: {}",block);
+        logger.debug("event block: {}",block);
         return block;
     }
 }

@@ -43,36 +43,35 @@ public class GenParams {
                 "comments",  // ........... 9
         };
         String language = Parts.readString(content, offset, 2);
-        logger.info("Language : " + language);
+        logger.debug("Language : " + language);
         block.put("language",language);
         offset += 2;
-        int count = 0;
+
         String xstr;
         for(String field :fields){
             if (field == "build condition") {
                 xstr = Parts.readString(content, offset, 2);
                 offset += 2;
-                logger.info(field+ " : " + xstr);
+                xstr = buildCondition(xstr);
+                logger.debug(field+ " : " + xstr);
                 block.put(field,xstr);
             }else if(field.equals("wavelength")){
                 int xint = Parts.readInt(content, offset, 2);
                 offset += 2;
-                logger.info(field+" : " + xint);
+                logger.debug(field+" : " + xint);
                 block.put(field,xint);
             }else if( field.equals("user offset")){
                 int xint = Parts.readInt(content, offset, 4);
                 offset += 4;
-                logger.info(field+" : " + xint);
+                logger.debug(field+" : " + xint);
                 block.put(field,xint);
             }else{
                 xstr = Parts.readStringSpaceZero(content, offset);
                 offset += xstr.getBytes().length+1;
-                logger.info(field+" : " + xstr);
+                logger.debug(field+" : " + xstr);
                 block.put(field,xstr);
             }
-            count += 1;
         }
-//        System.out.println("count::"+count);
         return block;
     }
 
@@ -95,44 +94,40 @@ public class GenParams {
         String name = Parts.readStringSpaceZero(content, offset);
         offset += name.getBytes().length + 1;
         String language = Parts.readString(content, offset, 2);
-        logger.info("Language : " + language);
+        logger.debug("Language : " + language);
         block.put("language",language);
         offset += 2;
-        int count = 0;
         String xstr;
         for(String field :fields){
-
             if (field == "build condition") {
                 xstr = Parts.readString(content, offset, 2);
                 offset += 2;
                 xstr = buildCondition(xstr);
-                logger.info(field+ " : " + xstr);
+                logger.debug(field+ " : " + xstr);
                 block.put(field,xstr);
             }else if(field.equals("fiber type")) {
                 int xint = Parts.readInt(content, offset, 2);
                 offset += 2;
                 xstr = fiberType(xint);
-                logger.info(field+" : " + xstr);
+                logger.debug(field+" : " + xstr);
                 block.put(field,xstr);
             }else if(field.equals("wavelength")){
                 int xint = Parts.readInt(content, offset, 2);
                 offset += 2;
-                logger.info(field+" : " + xint);
+                logger.debug(field+" : " + xint);
                 block.put(field,xint);
             }else if( field.equals("user offset") || field.equals("user offset distance")){
                 int xint = Parts.readInt(content, offset, 4);
                 offset += 4;
-                logger.info(field+" : " + xint);
+                logger.debug(field+" : " + xint);
                 block.put(field,xint);
             }else{
                 xstr = Parts.readStringSpaceZero(content, offset);
                 offset += xstr.getBytes().length+1;
-                logger.info(field+" : " + xstr);
+                logger.debug(field+" : " + xstr);
                 block.put(field,xstr);
             }
-            count += 1;
         }
-//        System.out.println("count::"+count);
         return block;
     }
     private static String buildCondition(String key){

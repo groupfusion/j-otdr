@@ -22,8 +22,8 @@ public class Mapblock {
         //读取并设置Map区块名称
         String mapBlockId = Parts.readStringSpaceZero(content, offset);
         results.put("blockId", mapBlockId);
-        logger.info("===============Mapblock===============");
-        logger.info("blockId : " + results.get("blockId"));
+
+        logger.debug("blockId : " + results.get("blockId"));
         if(mapBlockId.equals("Map")){
             offset += mapBlockId.getBytes().length + 1;
             results.put("format", 2);
@@ -31,21 +31,21 @@ public class Mapblock {
             offset = 0;
             results.put("format", 1);
         }
-        logger.info("format : " + results.get("format"));
+        logger.debug("format : " + results.get("format"));
         //读取并设置Map区块版本
         results.put("version", Parts.readInt(content, offset, Parts.LENGTH_SHORT)*0.01);
-        logger.info("version : " + results.get("version"));
+        logger.debug("version : " + results.get("version"));
         Map<String,Object> mapBlock = new HashMap<>();
         offset += Parts.LENGTH_SHORT;
         //读取并设置Map区块长度
         int nbytes = Parts.readInt(content, offset, Parts.LENGTH_LONG);
         mapBlock.put("nbytes", nbytes);
-        logger.info("nbytes : " + nbytes);
+        logger.debug("nbytes : " + nbytes);
         offset += Parts.LENGTH_LONG;
         //读取并设置区块数
         int nblocks = Parts.readInt(content, offset, Parts.LENGTH_SHORT)-1;
         mapBlock.put("nblocks", nblocks);
-        logger.info("nblocks : " + nblocks);
+        logger.debug("nblocks : " + nblocks);
         results.put("mapblock",mapBlock);
         int startpos=nbytes;
         offset += Parts.LENGTH_SHORT;
@@ -63,11 +63,11 @@ public class Mapblock {
                     "pos",startpos,
                     "order", i);
             startpos += bsize;
-            logger.info("blocks:" + i+" : "+ref.toString());
+            logger.debug("blocks:" + i+" : "+ref.toString());
             blocks.put(bname,ref);
         }
         results.put("blocks",blocks);
-        logger.info("===============Mapblock==end==========");
+
         return status;
     }
 }

@@ -17,24 +17,7 @@ import java.util.*;
 public class OTDRAnalysis {
     private static Logger logger = LoggerFactory.getLogger("OTDRAnalysis");
 
-    public static void main(String[] args) throws Exception {
-        OTDRAnalysis analysis = new OTDRAnalysis();
-        String sorFileName="test.sor";
-        String fileName=sorFileName.split("\\.")[0];
-        OtdrData otdrData = analysis.read(sorFileName);
-//        logger.info("tracedata:"+otdrData.getTracedata());
-//        logger.info(sorFileName +":" + JsonUtils.toJson(otdrData.getDump()));
-//        analysis.writeFileJson(fileName,otdrData.getDump());
-//        analysis.writeFileData(fileName,otdrData.getTracedata());
-        String path="/Users/xingyun/project/j-otdr/饶氏宾馆至东部开发区";
-        for(int i=5;i<49;i++){
-            fileName=String.format("%02d",i);
-            otdrData = analysis.read(path+"/"+fileName+".SOR");
-            analysis.writeFileJson(path+"/"+fileName,otdrData.getDump());
-            analysis.writeFileData(path+"/"+fileName,otdrData.getTracedata());
-        }
 
-    }
     /**
      * 读取并解析OTDR sor文件内容
      *
@@ -55,7 +38,7 @@ public class OTDRAnalysis {
             BufferedWriter out = new BufferedWriter(new FileWriter(fileName+"_dump.json"));
             out.write(JsonUtils.toJson(dump));
             out.close();
-            logger.info(fileName+"_dump.json 文件创建成功！");
+            logger.debug(fileName+"_dump.json 文件创建成功！");
         } catch (IOException e) {
         }
     }
@@ -72,7 +55,7 @@ public class OTDRAnalysis {
                 out.write(hang +"\n");
             }
             out.close();
-            logger.info(fileName+"_trace.data 文件创建成功！");
+            logger.debug(fileName+"_trace.data 文件创建成功！");
         } catch (IOException e) {
         }
     }
@@ -83,7 +66,7 @@ public class OTDRAnalysis {
      * @param input 文件输入流
      * @return 区块集合信息
      */
-    private  OtdrData read(InputStream input,String fileName) throws Exception {
+    public  OtdrData read(InputStream input,String fileName) throws Exception {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         int len;
@@ -95,27 +78,25 @@ public class OTDRAnalysis {
         input.close();
         //获取字节内容
         OtdrData results = read(content,fileName);
-
         return results;
     }
 
-    private OtdrData read(byte[] content, String fileName) throws Exception {
+    public OtdrData read(byte[] content, String fileName) throws Exception {
         OtdrData data = new OtdrData();
         List<String> tracedata=new ArrayList();
-
         //创建Map块
         Map<String, Object> results = new LinkedHashMap<>();
         results.put("filename",fileName);
 
+        logger.debug("===============Mapblock===============");
         String status = Mapblock.process(results,content);
+        logger.debug("===============Mapblock end==========");
         if(!"ok".equals(status)){
             throw new FormatException("解析 "+fileName+" 文件格式异常");
         }
         int format = Integer.parseInt(results.get("format").toString());
 
         Map<String,Object> blocks=(Map)results.get("blocks");
-
-
         for(String bName:blocks.keySet()){
             Map<String,Object> ref = (Map)blocks.get(bName);
             Map<String, Object> block = new HashMap<>();
@@ -126,8 +107,7 @@ public class OTDRAnalysis {
             byte[] blockContent = new byte[length];
             System.arraycopy(content, startOffset, blockContent, 0, length);
             //            logger.info(bname+" original data："+ Arrays.toString(blockContent));
-            logger.info("==============="+bname+"===============");
-
+            logger.debug("==============="+bname+"===============");
             switch (String.valueOf(bname)) {
                 case "GenParams":
                     block = GenParams.process(format, blockContent);
@@ -154,8 +134,8 @@ public class OTDRAnalysis {
                     block =  Checksum.process(format, blockContent,content);
                     break;
             }
-            logger.info(bname+" analysised data:: "+block);
-            logger.info("==============="+bname+"==end===============");
+            logger.debug(bname+" data:: "+block);
+            logger.debug("==============="+bname+" end===============");
             if(!block.isEmpty()) {
                 results.put(bname, block);
             }
