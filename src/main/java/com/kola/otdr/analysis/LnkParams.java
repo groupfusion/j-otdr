@@ -9,8 +9,7 @@ import java.util.Map;
 /**
  * @Title: LnkParams.java
  * @Description:
- * @Package: com.kola.otdr.analysis
- * @author: xingyun－zhanghuijun
+ * @Author fusionGroup
  * @date: 2022-04-12 10:47
  */
 public class LnkParams {

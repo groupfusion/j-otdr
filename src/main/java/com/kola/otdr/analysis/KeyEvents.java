@@ -11,9 +11,8 @@ import java.util.regex.Pattern;
 
 /**
  * @Title: KeyEvents.java
- * @Description:
- * @Package: com.kola.otdr.analysis
- * @author: xingyun－zhanghuijun
+ * @Description: 解析事件信息
+ * @author fusionGroup
  * @date: 2022-04-11 16:47
  */
 public class KeyEvents {

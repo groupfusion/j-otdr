@@ -5,6 +5,10 @@ import com.kola.otdr.util.CRC16;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 校验码
+ * @author fusionGroup
+ */
 public class Checksum {
     public static Map<String, Object> process(int format, byte[] blockContent,byte[] content){
         String bName="Cksum";
