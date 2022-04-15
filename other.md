@@ -19,61 +19,59 @@ OTDR 标准格式文件是遵守Bellcore 标准的
 
 #### Map block
 
-|序号|名称|编码|描述|默认值|类型|长度(字节)|
-|---|:---:|:---:|:---:|:---:|:-----|:-----|
-|1|blockId|-|MapBlockId|map|string||
 
-1、blockId 默认为"map\0" ；从v2.0开始有此部分，v1.0版本从version开始。
-2、version 版本信息；长度2个字节
-3、blockSize MapBlock块字节长度； 4个字节
-4、blockNum  MapBlock块数量；2个字节
-5、blocks
-5.1 blockName block块名称
-5.2 blockVer  block块版本
-5.3 blockSize block块字节长度，据此在结合MapBlock块字节长度计算块的起始位置；
+- 0、blockId 默认为"map\0" ；从v2.0开始有此部分，v1.0版本从version开始。
+- 0-1、version 版本信息；长度2个字节
+- 2-5、blockSize MapBlock块字节长度； 4个字节
+- 6-7、blockNum  MapBlock块数量；2个字节
+- :: blocks
+- ::1 blockName block块名称,string,以\0结束
+- ::2 blockVer  block块版本, 2个字节
+- ::3 blockSize block块字节长度，4个字节，据此在结合MapBlock块字节长度计算块的起始位置；
 
 
 
 #### Gen Params
 
 ver.2
-1、 block ID block块名称，默认值"GenParams\0" 
-2、 Language Code 语言编码，长度2个字节
-3、 cable ID 光缆id，string类型，自定义长度，以\0结束
-4、 fiber ID 纤芯id，string类型，自定义长度，以\0结束
-5、 fiber type 光纤类型，长度2个字节，无符号整数
-6、 wavelength 波长，长度2个字节，无符号整数
-7、 location A 起点位置，string类型，自定义长度，以\0结束
-8、 location B 终点位置，string类型，自定义长度，以\0结束
-9、 cable code 光缆编号，string类型，自定义长度，以\0结束
-10、build condition 构建条件，2 字节字符
-11、user offset 用户补偿，无符号整数，4个字节
-12、user offset distance  补偿长度，无符号整数，4个字节
-13、operator 运算符，string类型，自定义长度，以\0结束
-14、comments 备注，string类型，自定义长度，以\0结束
+- 1、 block ID block块名称，默认值"GenParams\0" 
+- 2、 Language Code 语言编码，长度2个字节
+- 3、 cable ID 光缆id，string类型，自定义长度，以\0结束
+- 4、 fiber ID 纤芯id，string类型，自定义长度，以\0结束
+- 5、 fiber type 光纤类型，长度2个字节，无符号整数
+- 6、 wavelength 波长，长度2个字节，无符号整数
+- 7、 location A 起点位置，string类型，自定义长度，以\0结束
+- 8、 location B 终点位置，string类型，自定义长度，以\0结束
+- 9、 cable code 光缆编号，string类型，自定义长度，以\0结束
+- 10、build condition 构建条件，2 字节字符
+- 11、user offset 用户补偿，无符号整数，4个字节
+- 12、user offset distance  补偿长度，无符号整数，4个字节
+- 13、operator 运算符，string类型，自定义长度，以\0结束
+- 14、comments 备注，string类型，自定义长度，以\0结束
 
 ver.1
-1、Language Code 语言编码，长度2个字节
-2、cable ID, 光缆id，string类型，自定义长度，以\0结束
-3、fiber ID, 纤芯id，string类型，自定义长度，以\0结束
-4、wavelength,  波长，长度2个字节，无符号整数
-5、location A, 起点位置，string类型，自定义长度，以\0结束
-6、location B, 终点位置，string类型，自定义长度，以\0结束
-7、cable code/fiber type, 光缆编号/光纤类型 string类型，自定义长度，以\0结束
-8、build condition,  构建条件，2 字节字符
-9、user offset,  用户补偿，无符号整数，4个字节
-10、operator, 运算符，string类型，自定义长度，以\0结束
-11、comments, 备注，string类型，自定义长度，以\0结束
+- 1、Language Code 语言编码，长度2个字节
+- 2、cable ID, 光缆id，string类型，自定义长度，以\0结束
+- 3、fiber ID, 纤芯id，string类型，自定义长度，以\0结束
+- 4、wavelength,  波长，长度2个字节，无符号整数
+- 5、location A, 起点位置，string类型，自定义长度，以\0结束
+- 6、location B, 终点位置，string类型，自定义长度，以\0结束
+- 7、cable code/fiber type, 光缆编号/光纤类型 string类型，自定义长度，以\0结束
+- 8、build condition,  构建条件，2 字节字符
+- 9、user offset,  用户补偿，无符号整数，4个字节
+- 10、operator, 运算符，string类型，自定义长度，以\0结束
+- 11、comments, 备注，string类型，自定义长度，以\0结束
 
 #### Sup Params 
-1、block ID block块名称，默认值"SupParams\0" 
-2、supplier, 供应商 string类型，自定义长度，以\0结束
-3、OTDR,  OTDR机器信息，string类型，自定义长度，以\0结束
-4、OTDR S/N,OTDR机器序列号，string类型，自定义长度，以\0结束
-5、optical module, 光学模块信息 ，string类型，自定义长度，以\0结束
-6、optical module S/N, 光学模块序列号，string类型，自定义长度，以\0结束
-7、software version,  软件版本 ，string类型，自定义长度，以\0结束
-8、other,  关于设备的其他信息，string类型，自定义长度，以\0结束
+
+- 1、block ID block块名称，默认值"SupParams\0" 
+- 2、supplier, 供应商 string类型，自定义长度，以\0结束
+- 3、OTDR,  OTDR机器信息，string类型，自定义长度，以\0结束
+- 4、OTDR S/N,OTDR机器序列号，string类型，自定义长度，以\0结束
+- 5、optical module, 光学模块信息 ，string类型，自定义长度，以\0结束
+- 6、optical module S/N, 光学模块序列号，string类型，自定义长度，以\0结束
+- 7、software version,  软件版本 ，string类型，自定义长度，以\0结束
+- 8、other,  关于设备的其他信息，string类型，自定义长度，以\0结束
 
 #### fxd params
 
