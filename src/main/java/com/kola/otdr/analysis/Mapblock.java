@@ -32,7 +32,7 @@ public class Mapblock {
             offset = 0;
             results.put("format", 1);
         }
-        logger.info("format : " + results.get("results"));
+        logger.info("format : " + results.get("format"));
         //读取并设置Map区块版本
         results.put("version", Parts.readInt(content, offset, Parts.LENGTH_SHORT)*0.01);
         logger.info("version : " + results.get("version"));

@@ -89,14 +89,14 @@ public class FxdParams {
 
                     // from Dmitry Vaygant:
                     {"averaging time", 38, 2, "v", 0.1, 0, "sec"},  // ..... 38-39 averaging time in seconds
-                    {"range", 40, 4, "v", 2e-5, 6, "km"},  // .............. 40-43 range (km); note x2
+                    {"acquisition range", 40, 4, "v", 2e-5, 6, "km"},  // .............. 40-43 range (km); note x2
 
                     // from Andrew Jones
-                    {"acquisition range distance", 44, 4, "i", "", "", ""},  // ........ 44-47
-                    {"front panel offset", 48, 4, "i", "", "", ""},  // ................ 48-51
-                    {"noise floor level", 52, 2, "v", "", "", ""},  // ................ 52-53 unsigned
-                    {"noise floor scaling factor", 54, 2, "i", "", "", ""},  // ........ 54-55
-                    {"power offset first point", 56, 2, "v", "", "", ""},  // ......... 56-57 unsigned
+                    {"acquisition range distance", 44, 4, "i", "", "", ""},  // ........ 44-47 acquisition range distance
+                    {"front panel offset", 48, 4, "i", "", "", ""},  // ................ 48-51 front panel offset
+                    {"noise floor level", 52, 2, "v", "", "", ""},  // ................ 52-53 noise floor level ；unsigned
+                    {"noise floor scaling factor", 54, 2, "i", "", "", ""},  // ........ 54-55 noise floor scaling factor
+                    {"power offset first point", 56, 2, "v", "", "", ""},  // ......... 56-57 power offset first point ；unsigned
                     {"loss thr", 58, 2, "v", 0.001, 3, "dB"},  // .......... 58-59 loss threshold
                     {"refl thr", 60, 2, "v", -0.001, 3, "dB"},  // ......... 60-61 reflection threshold
                     {"EOT thr", 62, 2, "v", 0.001, 3, "dB"},  // ............ 62-63 end-of-transmission threshold

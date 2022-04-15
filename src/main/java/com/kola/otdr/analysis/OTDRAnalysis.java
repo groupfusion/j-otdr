@@ -17,7 +17,7 @@ public class OTDRAnalysis {
 
     public static void main(String[] args) throws Exception {
         OTDRAnalysis analysis = new OTDRAnalysis();
-        String sorFileName="demo_ab.sor";
+        String sorFileName="test.sor";
         String fileName=sorFileName.split("\\.")[0];
         OtdrData otdrData = analysis.read(sorFileName);
         logger.info("tracedata:"+otdrData.getTracedata());
@@ -45,7 +45,7 @@ public class OTDRAnalysis {
             BufferedWriter out = new BufferedWriter(new FileWriter(fileName+"_dump.json"));
             out.write(JsonUtils.toJson(dump));
             out.close();
-            System.out.println("json文件创建成功！");
+            logger.info(fileName+"_dump.json 文件创建成功！");
         } catch (IOException e) {
         }
     }
@@ -62,7 +62,7 @@ public class OTDRAnalysis {
                 out.write(hang +"\n");
             }
             out.close();
-            System.out.println("data文件创建成功！");
+            logger.info(fileName+"_trace.data 文件创建成功！");
         } catch (IOException e) {
         }
     }
@@ -94,7 +94,7 @@ public class OTDRAnalysis {
         List<String> tracedata=new ArrayList();
 
         //创建Map块
-        Map<String, Object> results = new HashMap<>();
+        Map<String, Object> results = new LinkedHashMap<>();
         results.put("filename",fileName);
 
         String status = Mapblock.process(results,content);
@@ -104,13 +104,8 @@ public class OTDRAnalysis {
         int format = Integer.parseInt(results.get("format").toString());
 
         Map<String,Object> blocks=(Map)results.get("blocks");
-        Iterator it = blocks.entrySet().iterator();
 
-        while(it.hasNext()){
-            Map.Entry s = (Map.Entry)it.next();
-            System.out.println(s.getKey());
-            System.out.println(s.getValue());
-        }
+
         for(String bName:blocks.keySet()){
             Map<String,Object> ref = (Map)blocks.get(bName);
             Map<String, Object> block = new HashMap<>();

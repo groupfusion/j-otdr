@@ -23,7 +23,7 @@ OTDR 标准格式文件是遵守Bellcore 标准的
 |---|:---:|:---:|:---:|:---:|:-----|:-----|
 |1|blockId|-|MapBlockId|map|string||
 
-1、blockId 默认为"map" ；从v2.0开始有此部分，v1.0版本从version开始。
+1、blockId 默认为"map\0" ；从v2.0开始有此部分，v1.0版本从version开始。
 2、version 版本信息；长度2个字节
 3、blockSize MapBlock块字节长度； 4个字节
 4、blockNum  MapBlock块数量；2个字节
@@ -34,12 +34,85 @@ OTDR 标准格式文件是遵守Bellcore 标准的
 
 
 
+#### Gen Params
 
-| 标题|内容|备注|
-| ------ | :------:|------:|
-|标题1 |内容1|备注1|
-| 标题2 | 内容2|备注2|
+ver.2
+1、 block ID block块名称，默认值"GenParams\0" 
+2、 Language Code 语言编码，长度2个字节
+3、 cable ID 光缆id，string类型，自定义长度，以\0结束
+4、 fiber ID 纤芯id，string类型，自定义长度，以\0结束
+5、 fiber type 光纤类型，长度2个字节，无符号整数
+6、 wavelength 波长，长度2个字节，无符号整数
+7、 location A 起点位置，string类型，自定义长度，以\0结束
+8、 location B 终点位置，string类型，自定义长度，以\0结束
+9、 cable code 光缆编号，string类型，自定义长度，以\0结束
+10、build condition 构建条件，2 字节字符
+11、user offset 用户补偿，无符号整数，4个字节
+12、user offset distance  补偿长度，无符号整数，4个字节
+13、operator 运算符，string类型，自定义长度，以\0结束
+14、comments 备注，string类型，自定义长度，以\0结束
 
+ver.1
+1、Language Code 语言编码，长度2个字节
+2、cable ID, 光缆id，string类型，自定义长度，以\0结束
+3、fiber ID, 纤芯id，string类型，自定义长度，以\0结束
+4、wavelength,  波长，长度2个字节，无符号整数
+5、location A, 起点位置，string类型，自定义长度，以\0结束
+6、location B, 终点位置，string类型，自定义长度，以\0结束
+7、cable code/fiber type, 光缆编号/光纤类型 string类型，自定义长度，以\0结束
+8、build condition,  构建条件，2 字节字符
+9、user offset,  用户补偿，无符号整数，4个字节
+10、operator, 运算符，string类型，自定义长度，以\0结束
+11、comments, 备注，string类型，自定义长度，以\0结束
+
+#### Sup Params 
+1、block ID block块名称，默认值"SupParams\0" 
+2、supplier, 供应商 string类型，自定义长度，以\0结束
+3、OTDR,  OTDR机器信息，string类型，自定义长度，以\0结束
+4、OTDR S/N,OTDR机器序列号，string类型，自定义长度，以\0结束
+5、optical module, 光学模块信息 ，string类型，自定义长度，以\0结束
+6、optical module S/N, 光学模块序列号，string类型，自定义长度，以\0结束
+7、software version,  软件版本 ，string类型，自定义长度，以\0结束
+8、other,  关于设备的其他信息，string类型，自定义长度，以\0结束
+
+#### fxd params
+
+Ver.2
+-   0-3：date/time : 日期/时间：整数，4字节
+-   4-5：unit : 距离单位（km,mt,ft,kf,mi）：2字节
+-   6-7：wavelength : 实际波长：整数，2字节
+-  8-11：acquisition offset: 获得补偿，整数，4个字节; 
+- 12-15：acquisition offset distance：获得补偿，整数，4个字节; 
+- 16-17：number of pulse width entries：输入脉冲宽度总数，整数，2个字节; 
+- 18-19：pulse-width : 脉冲宽度：2字节
+- 20-23：sample spacing:  样本（数据）间距：4字节
+- 24-27：number of data points : 跟踪中的数据点数：4 字节
+- 28-31：index of refraction : 折射率：4字节
+- 32-33：backscattering coefficient  : 后向散射系数：2字节
+- 34-37：number of averages : 平均数：4字节
+- 38-39：averaging time in seconds：平均时间（每秒），整数，2个字节; 
+- 40-43：acquisition range (km): 采集范围：4 个字节
+- 44-47：acquisition range distance：采集距离 ；整数，4个字节;
+- 48-51：front panel offset ：前面板偏移量；整数，4个字节;
+- 52-53：noise floor level ：噪音水平；2个字节; 
+- 54-55：noise floor scaling factor：噪音比例因子：整数，2个字节; 
+- 56-57：power offset first point：首次功率偏移点；2个字节; 
+- 58-59：loss threshold:  : 丢失阈值：2字节
+- 60-61：reflection threshold:  : 反射阈值：2字节
+- 62-63：end-of-transmission threshold : 传输结束阈值：2字节
+- 64-65：trace type:  : 跟踪类型(ST,RT,DT, or RF)：2 个字符
+- 66-81：window coordinates  : 窗口坐标：16 字节，两组 （x1，y1，x2,y2)
     
 
-#### 
+#### key events
+
+
+#### data points block
+
+
+#### checksum block
+
+- block ID block块名称，默认值"Cksum\0"  
+- 0-01: checksum : 校验码 
+
+

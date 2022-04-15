@@ -45,7 +45,7 @@ public class DataPts {
         }
         block.put("_datapts_params",datapts);
         int ndp = Parts.readInt(content, offset, 4);
-        System.out.println("Number of Data Points : " + ndp);
+//        System.out.println("Number of Data Points : " + ndp);
         if ( ndp != numPonit) {
             throw new QuantityMismatchException("!!! WARNING !!! block says number of data points is "+ndp+" instead of results['FxdParams']['num data points']＝"+numPonit);
         }
@@ -53,7 +53,7 @@ public class DataPts {
 
         offset += 4;
         int tnsfu = Parts.readInt(content, offset, 2);
-        System.out.println("Total Number Scale Factors Used : " + tnsfu);
+//        System.out.println("Total Number Scale Factors Used : " + tnsfu);
         block.put("num traces",tnsfu);
         if ( tnsfu > 1 ) {
             throw new QuantityMismatchException("WARNING!!!: Cannot handle multiple traces ("+tnsfu+"); aborting");
@@ -61,12 +61,12 @@ public class DataPts {
 
         offset += 2;
         int number = Parts.readInt(content, offset, 4);
-        System.out.println("Total Data Points Using Scale Factors : " + number);
+//        System.out.println("Total Data Points Using Scale Factors : " + number);
         block.put("Using data points",number);
 
         offset += 4;
         int scaleFactor = Parts.readInt(content, offset, 2);
-        System.out.println("    Scale Factor : " + scaleFactor*0.001);
+//        System.out.println("    Scale Factor : " + scaleFactor*0.001);
         block.put("scaling factor",scaleFactor*0.001);
 
         offset += 2;
@@ -83,7 +83,6 @@ public class DataPts {
         Double disp_max = ymax * fsx;
         block.put("max before offset",String.format("%.3f",disp_max));
         block.put("min before offset",String.format("%.3f",disp_min));
-
 
 
         // .........................................
