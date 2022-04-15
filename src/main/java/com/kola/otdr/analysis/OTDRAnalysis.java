@@ -22,10 +22,18 @@ public class OTDRAnalysis {
         String sorFileName="test.sor";
         String fileName=sorFileName.split("\\.")[0];
         OtdrData otdrData = analysis.read(sorFileName);
-        logger.info("tracedata:"+otdrData.getTracedata());
-        logger.info(sorFileName +":" + JsonUtils.toJson(otdrData.getDump()));
-        analysis.writeFileJson(fileName,otdrData.getDump());
-        analysis.writeFileData(fileName,otdrData.getTracedata());
+//        logger.info("tracedata:"+otdrData.getTracedata());
+//        logger.info(sorFileName +":" + JsonUtils.toJson(otdrData.getDump()));
+//        analysis.writeFileJson(fileName,otdrData.getDump());
+//        analysis.writeFileData(fileName,otdrData.getTracedata());
+        String path="/Users/xingyun/project/j-otdr/饶氏宾馆至东部开发区";
+        for(int i=5;i<49;i++){
+            fileName=String.format("%02d",i);
+            otdrData = analysis.read(path+"/"+fileName+".SOR");
+            analysis.writeFileJson(path+"/"+fileName,otdrData.getDump());
+            analysis.writeFileData(path+"/"+fileName,otdrData.getTracedata());
+        }
+
     }
     /**
      * 读取并解析OTDR sor文件内容
