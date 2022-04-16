@@ -25,10 +25,10 @@ public class FxdParams {
     );
 
     private static Map<String,String> tracetype = Map.of(
-            "ST", "[standard trace]",
-            "RT", "[reverse trace]",
-            "DT", "[difference trace]",
-            "RF", "[reference]"
+            "ST", " [standard trace]",
+            "RT", " [reverse trace]",
+            "DT", " [difference trace]",
+            "RF", " [reference]"
             );
 
     public static Map<String, Object> process(int format, byte[] content){
@@ -157,6 +157,7 @@ public class FxdParams {
             if ("date/time".equals(name)) {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 xstr =  format.format(new Date(val.longValue()*1000));
+                xstr = xstr +"("+val.longValue()+" sec)";
                 logger.debug("date/time:: "+xstr +"("+val.longValue()+")");
                 // console.log("............... got "+xstr);2019-06-17 16:01:21
             }else if ("unit".equals(name)) {

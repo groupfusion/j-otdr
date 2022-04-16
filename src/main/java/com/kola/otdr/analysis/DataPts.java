@@ -64,9 +64,9 @@ public class DataPts {
         block.put("Using data points",number);
 
         offset += 4;
-        int scaleFactor = Parts.readInt(content, offset, 2);
+        double scaleFactor = Parts.readInt(content, offset, 2)*0.001;
 //        System.out.println("    Scale Factor : " + scaleFactor*0.001);
-        block.put("scaling factor",scaleFactor*0.001);
+        block.put("scaling factor",scaleFactor);
 
         offset += 2;
         List<Double> dlist = new ArrayList();
@@ -77,11 +77,11 @@ public class DataPts {
         // .........................................
         Double ymax = Collections.max( dlist );
         Double ymin = Collections.min( dlist );
-        double fsx = 0.001* scaleFactor;
-        Double disp_min = ymin * fsx;
-        Double disp_max = ymax * fsx;
-        block.put("max before offset",String.format("%.3f",disp_max));
-        block.put("min before offset",String.format("%.3f",disp_min));
+        double fsx =  scaleFactor;
+        Double disp_min = ymin * fsx * 0.001;
+        Double disp_max = ymax * fsx * 0.001;
+        block.put("max before offset",disp_max);
+        block.put("min before offset",disp_min);
 
 
         // .........................................

@@ -10,22 +10,22 @@ import java.util.Map;
  * @date: 2022-04-12 12:15
  */
 public class OtdrData {
-    private Map<String,Object> dump;
-    private List<String> tracedata;
+    private Map<String,Object> dumpData;
+    private List<String> traceData;
 
-    public Map<String, Object> getDump() {
-        return dump;
+    public Map<String, Object> getDumpData() {
+        return dumpData;
     }
 
-    public void setDump(Map<String, Object> dump) {
-        this.dump = dump;
+    public void setDumpData(Map<String, Object> dumpData) {
+        this.dumpData = dumpData;
     }
 
-    public List<String> getTracedata() {
-        return tracedata;
+    public List<String> getTraceData() {
+        return traceData;
     }
 
-    public void setTracedata(List<String> tracedata) {
-        this.tracedata = tracedata;
+    public void setTraceData(List<String> traceData) {
+        this.traceData = traceData;
     }
 }

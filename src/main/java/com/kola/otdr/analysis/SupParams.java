@@ -19,6 +19,8 @@ public class SupParams {
             String blockId = Parts.readStringSpaceZero(content, offset);
             if(!bName.equals(blockId)) {
                 return null;
+            }else{
+                offset += blockId.getBytes().length + 1;
             }
         }
         return processSupparam(content, offset);

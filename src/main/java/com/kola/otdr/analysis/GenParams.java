@@ -144,6 +144,21 @@ public class GenParams {
     private static String fiberType(int key){
         String value="";
         switch (key){
+            case 651 : value = "G."+key+" (50um core multimode)";break;
+            case 652 : value = "G."+key+" (Standard SMF) (单模光纤)";break;
+            case 653 : value = "G."+key+" (Dispersion-shifted Fiber)";break;
+            case 654 : value = "G."+key+" (1550nm Loss-minimzed Fiber)";break;
+            case 655 : value = "G."+key+" (Non Zero Dispersion-shifted Fiber)";break;
+            case 656 : value = "G."+key+" (Wideband non-zero Dispersion Shifted Fiber)";break;
+            case 657 : value = "G."+key+" (Bending Loss Insensitive Fiber)";break;
+            default  :  value = "G."+key+" (Unknown)";break;
+        }
+        return value;
+    }
+
+    private static String fiberType4CN(int key){
+        String value="";
+        switch (key){
             case 651 : value = "G."+key+" (多模光纤)";break;
             case 652 : value = "G."+key+" (单模光纤)";break;
             case 653 : value = "G."+key+" (色散位移光纤DSF)";break;

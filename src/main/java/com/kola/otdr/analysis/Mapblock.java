@@ -33,8 +33,9 @@ public class Mapblock {
         }
         logger.debug("format : " + results.get("format"));
         //读取并设置Map区块版本
-        results.put("version", Parts.readInt(content, offset, Parts.LENGTH_SHORT)*0.01);
-        logger.debug("version : " + results.get("version"));
+        String version = String.format("%.2f",Parts.readInt(content, offset, Parts.LENGTH_SHORT)*0.01);
+        results.put("version", version);
+        logger.debug("version : " + version);
         Map<String,Object> mapBlock = new HashMap<>();
         offset += Parts.LENGTH_SHORT;
         //读取并设置Map区块长度
@@ -53,7 +54,7 @@ public class Mapblock {
         for(int i=0;i<nblocks;i++){
             String bname= Parts.readStringSpaceZero(content,offset);
             offset += bname.getBytes().length + 1;
-            double bver = Parts.readInt(content, offset, Parts.LENGTH_SHORT)*0.01;
+            String bver = String.format("%.2f",Parts.readInt(content, offset, Parts.LENGTH_SHORT)*0.01);
             offset += Parts.LENGTH_SHORT;
             int bsize = Parts.readInt(content, offset,Parts.LENGTH_LONG);
             offset += Parts.LENGTH_LONG;

@@ -141,8 +141,8 @@ public class OTDRAnalysis {
             }
 
         }
-        data.setDump(results);
-        data.setTracedata(tracedata);
+        data.setDumpData(results);
+        data.setTraceData(tracedata);
         return data;
     }
 
