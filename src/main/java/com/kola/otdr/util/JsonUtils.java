@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * json 工具类
+ * @author fusionGroup
  */
 public class JsonUtils {
     private Logger logger = LoggerFactory.getLogger(getClass());

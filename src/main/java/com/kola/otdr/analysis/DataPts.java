@@ -7,8 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 /**
- * @Title: DataPts.java
- * @Description: 解析测试数据
+ *  DataPts 解析测试数据
  * @author fusionGroup
  * @date: 2022-04-12 10:55
  */

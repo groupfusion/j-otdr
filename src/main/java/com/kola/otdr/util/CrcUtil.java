@@ -8,6 +8,7 @@ import java.util.Date;
 /**
  *
  * CRC数组处理工具类及数组合并
+ * @author fusion group
  */
 
 public class CrcUtil {

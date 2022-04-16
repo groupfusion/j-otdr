@@ -10,6 +10,7 @@ import java.util.Map;
  * @author fusionGroup
  */
 public class Checksum {
+
     public static Map<String, Object> process(int format, byte[] blockContent,byte[] content){
         String bName="Cksum";
         int offset = 0;

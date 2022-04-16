@@ -3,8 +3,7 @@ package com.kola.otdr.exception;
 /**
  * @Title: FormatException.java
  * @Description:
- * @Package: com.kola.otdr.exception
- * @author: xingyun－zhanghuijun
+ * @author: zhanghuijun
  * @date: 2022-04-12 11:58
  */
 public class FormatException extends Exception {

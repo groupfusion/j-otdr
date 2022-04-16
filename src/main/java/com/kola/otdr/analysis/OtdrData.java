@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Title: OtdrData.java
- * @Description:
+ * 定义otdr实体
  * @author fusionGroup
  * @date: 2022-04-12 12:15
  */

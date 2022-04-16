@@ -9,8 +9,9 @@ import java.io.*;
 import java.util.*;
 
 /**
- * @Title: OTDRAnalysis
+ * OTDR sor文件解析
  * OTDR sor file prase
+ * sor 文件包括map块，fxd参数块，gen参数块，事件块，lnk块，测试数据块，校验组成。
  * @author fusionGroup
  * @date: 2022-03-29 14:02
  */

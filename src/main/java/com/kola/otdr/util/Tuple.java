@@ -4,6 +4,7 @@ package com.kola.otdr.util;
  * Tuple 元组
  * @param <A>
  * @param <B>
+ * @author zhanghuijun
  */
 public class Tuple<A, B> {
 

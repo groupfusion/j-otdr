@@ -7,8 +7,8 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * @Title: LnkParams.java
- * @Description:
+ *  Lnk Params
+ *
  * @Author fusionGroup
  * @date: 2022-04-12 10:47
  */

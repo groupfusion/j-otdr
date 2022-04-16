@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * sup param 参数解析
  * @author fusionGroup
  * @date 2022-04-11 15:28
  */

@@ -10,8 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @Title: KeyEvents.java
- * @Description: 解析事件信息
+ * KeyEvents block 解析事件信息
  * @author fusionGroup
  * @date: 2022-04-11 16:47
  */
