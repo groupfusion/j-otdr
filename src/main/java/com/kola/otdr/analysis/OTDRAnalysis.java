@@ -31,7 +31,7 @@ public class OTDRAnalysis {
 
     /**
      * 将sor文件的摘要信息写入json文件
-     * @param fileName
+     * @param fileName 文件名
      * @param dump
      */
     public void writeFileJson(String fileName,Map<String,Object> dump){
@@ -82,12 +82,19 @@ public class OTDRAnalysis {
         return results;
     }
 
+    /**
+     * 解析OTDR sor 内容
+     * @param content 文件内容
+     * @param fileName 文件名。
+     * @return
+     * @throws Exception
+     */
     public OtdrData read(byte[] content, String fileName) throws Exception {
         OtdrData data = new OtdrData();
         List<String> tracedata=new ArrayList();
         //创建Map块
         Map<String, Object> results = new LinkedHashMap<>();
-        results.put("filename",fileName);
+        results.put("filename",getFileName(fileName));
 
         logger.debug("===============Mapblock===============");
         String status = Mapblock.process(results,content);
@@ -145,6 +152,15 @@ public class OTDRAnalysis {
         data.setDumpData(results);
         data.setTraceData(tracedata);
         return data;
+    }
+
+    private String getFileName(String fileName){
+        if(fileName.indexOf("/")!=-1){
+            int index = fileName.lastIndexOf("/");
+            return fileName.substring(index+1);
+        }else{
+            return fileName;
+        }
     }
 
 
