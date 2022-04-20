@@ -51,7 +51,7 @@ public class OTDRAnalysis {
      */
     public void writeFileData(String fileName,List<String> tracedata){
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter(fileName+"_trace.data"));
+            BufferedWriter out = new BufferedWriter(new FileWriter(fileName+"_trace.dat"));
             for(String hang:tracedata) {
                 out.write(hang +"\n");
             }
