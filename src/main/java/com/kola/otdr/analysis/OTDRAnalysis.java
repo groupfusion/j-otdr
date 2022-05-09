@@ -155,9 +155,9 @@ public class OTDRAnalysis {
     }
 
     private String getFileName(String fileName){
-        if(fileName.indexOf("/")!=-1){
-            int index = fileName.lastIndexOf("/");
-            return fileName.substring(index+1);
+        if(fileName.indexOf(File.separator)!=-1){
+            int pos = fileName.lastIndexOf(File.separator);
+            return fileName.substring(pos+1);
         }else{
             return fileName;
         }
