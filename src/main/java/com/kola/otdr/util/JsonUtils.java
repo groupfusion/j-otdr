@@ -47,7 +47,7 @@ public class JsonUtils {
         if (jsonStr!=null && !jsonStr.equals("")) {
             try {
                 Gson gson = new Gson();
-                JsonArray arry = new JsonParser().parse(jsonStr).getAsJsonArray();
+                JsonArray arry = JsonParser.parseString(jsonStr).getAsJsonArray();
                 for (JsonElement jsonElement : arry) {
                     list.add(gson.fromJson(jsonElement, cls));
                 }
