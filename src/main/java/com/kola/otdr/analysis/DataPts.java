@@ -110,7 +110,7 @@ public class DataPts {
         for(int i=0; i<number; i++) {
             // more work but (maybe) less rounding issues
             Double x = dx*i*xscaling / 1000.0; // output in km
-            tracedata.add( String.format("%.6f",x) +"\t"+String.format("%.6f",nlist.get(i)*0.001) );
+            tracedata.add( String.format("%.6f",x) +Parts.separator+String.format("%.6f",nlist.get(i)*0.001) );
         }
         return block;
     }

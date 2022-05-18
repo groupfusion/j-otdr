@@ -28,7 +28,7 @@ String sorFileName="demo_ab.sor";
 String fileName=sorFileName.split(".")[0];
 OtdrData otdrData = analysis.read(sorFileName);//读取并解析OTDR sor文件
 analysis.writeFileJson(fileName,otdrData.getDump());//将sor文件的摘要信息写入json文件
-analysis.writeFileData(fileName,otdrData.getTracedata());//将sor文件的数据写入data文件
+analysis.writeFileData(fileName,otdrData.getTracedata());//将sor文件的数据写入data文件,这里采用逗号分割
 ```
 
 

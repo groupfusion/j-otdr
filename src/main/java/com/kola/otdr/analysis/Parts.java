@@ -10,6 +10,8 @@ public class Parts {
     public static int LENGTH_SHORT = 2;
     public static int LENGTH_LONG = 4;
 
+    public static String separator = ",";
+
     //光速
     public static double SOL = 0.299792458D;
 
