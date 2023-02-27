@@ -1,5 +1,7 @@
 jOTDR：Simple OTDR SOR file parse written in Java 
 
+jOTDR 支持jdk11以上版本。
+
 OTDR java版本实现主要参考
 [OTDR文件格式说明](https://github-wiki-see.page/m/sid5432/pubOTDR/wiki/The-OTDR-%28Optical-Time-Domain-Reflectometer%29-Data-Format)
 [jsOTDR](https://github.com/sid5432/jsOTDR)
@@ -30,5 +32,6 @@ OtdrData otdrData = analysis.read(sorFileName);//读取并解析OTDR sor文件
 analysis.writeFileJson(fileName,otdrData.getDump());//将sor文件的摘要信息写入json文件
 analysis.writeFileData(fileName,otdrData.getTracedata());//将sor文件的数据写入data文件,这里默认采用"\t"分割
 ```
+
 
 
